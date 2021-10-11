@@ -1,0 +1,339 @@
+lesson 2
+
+int pin2 = 2;
+int pin3 = 3;
+int pin4 = 4;
+int pin5 = 5;
+
+
+void setup() {
+  // put your setup code here, to run once:
+pinMode(pin2, OUTPUT);
+pinMode(pin3, OUTPUT);
+pinMode(pin4, OUTPUT);
+pinMode(pin5, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+digitalWrite(pin2, LOW);
+digitalWrite(pin3, LOW);
+digitalWrite(pin4, LOW);
+digitalWrite(pin5, LOW);
+
+
+---------------------------------
+int j=1;
+int x = 12;
+int y = 11;
+int z;
+int waitT = 750;
+String myString= " +  ";
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(115200);                                     
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+z= x + y;
+Serial.print(x);                                    
+Serial.print(myString);
+Serial.print(y);
+Serial.print(" = ");
+Serial.print(z);
+Serial.println();
+delay(waitT);
+}
+
+lesson 12
+int myVoltPin = 2;
+int readVal;
+float V2;
+int delayT =500;
+
+
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+readVal = analogRead(myVoltPin);
+V2 = (5./1023.) * readVal;
+Serial.println(V2);
+Serial.println(readVal);
+delay(delayT);
+}
+
+lesson 13
+int myPin = A2;
+int readVal;
+int delayT = 250;
+float V2;
+int redPin = 9;
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(myPin, INPUT);
+pinMode(redPin, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+readVal = analogRead(myPin);
+V2= (5./1023.)*readVal;
+Serial.print("potentiometer voltage is ");
+Serial.println(V2);
+if (V2 >2 && V2<3){
+digitalWrite(redPin,HIGH);
+
+}
+if (V2 <2 || V2>3) {
+  digitalWrite(redPin, LOW);
+}
+delay(delayT);
+
+}
+lesson 14
+int potPin = A1;
+int gPin = 6;
+int potVal;
+float LEDVal;
+
+void setup() {
+  // put your setup code here, to run once:
+pinMode(potPin, INPUT);
+pinMode(gPin, OUTPUT);                                     
+Serial.begin(9600);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+potVal=analogRead(potPin);
+LEDVal = (255./1023.)* potVal;
+analogWrite(gPin,LEDVal);
+Serial.println(LEDVal);
+}
+
+lesson 15
+int pinR = 9;
+int pinY = 6;
+int delayt = 700;
+int yellowblink = 3;
+int redblink = 5;
+int j;
+
+void setup() {
+  // put your setup code here, to run once:
+pinMode(pinR,OUTPUT);
+pinMode(pinY, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+for(j=1; j<= yellowblink; j= j+1){
+  digitalWrite(pinY,HIGH);
+delay(delayt);
+digitalWrite(pinY,LOW);
+delay(delayt);
+}
+for (j=1; j<=redblink; j= j+1){
+  digitalWrite(pinR,HIGH);
+delay(delayt);
+digitalWrite(pinR,LOW);
+delay(delayt);
+
+}
+}
+------------------------------
+lesson 16
+
+int delayt=500;
+int j;
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+for(j=1; j<=10; j=j+1) {
+  Serial.println(j);
+  delay(delayt);
+}
+Serial.println();
+}
+
+--------------------
+lesson 17
+int j;
+int potVal;
+int potPin = A0;
+int redpin = 7;
+
+
+int delayt = 100;
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(potPin,INPUT);
+pinMode(redpin, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+potVal = analogRead(potPin);
+Serial.println(potVal);
+Serial.println();
+delay(delayt);
+while (potVal>1000){
+  digitalWrite(redpin, HIGH);
+  potVal = analogRead(potPin);
+  Serial.println(potVal);
+  delay(delayt);
+  
+}
+digitalWrite(redpin,LOW);
+}
+
+lesson 18
+int numblink;
+int j;
+int bt = 500;
+int redpin = 12;
+String msg ="how many blinks do you want";
+String msg2 = "your number is ";
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(redpin,OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+Serial.println(msg);
+while (Serial.available()==0){
+  
+}
+numblink = Serial.parseInt();
+for (j=1; j<=numblink; j= j+1) {
+  digitalWrite(redpin, HIGH);
+  delay(bt);
+  digitalWrite(redpin,LOW);
+  delay(bt);
+}
+}
+
+lesson 19
+
+int redpin = 12;
+int greenpin = 11;
+int bluepin =10;
+String mycolor;
+String msg ="what color led";
+void setup() {
+  // put your setup code here, to run once:
+
+pinMode(redpin,OUTPUT);
+pinMode(greenpin,OUTPUT);
+pinMode(bluepin,OUTPUT);
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+Serial.println(msg);
+while (Serial.available()==0) {
+  
+}
+
+mycolor = Serial.readString();
+Serial.print(mycolor);
+if(mycolor=="blue"){
+  digitalWrite(bluepin,HIGH);
+}
+digitalWrite(redpin,HIGH);
+digitalWrite(bluepin,HIGH);
+digitalWrite(greenpin,HIGH);
+}
+
+lessson 20
+
+int redpin = 8;
+int greenpin = 9;
+int bluepin = 10;
+String mycolor;
+String msg ="what color do you want";
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(redpin, OUTPUT);
+pinMode(greenpin, OUTPUT);
+pinMode(bluepin, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+Serial.println(msg);
+while (Serial.available()==0){
+  
+}
+mycolor = Serial.readString();
+if (mycolor=="red") {
+  digitalWrite(redpin, HIGH);
+  digitalWrite(greenpin, LOW);
+  digitalWrite(bluepin, LOW);
+}
+if (mycolor=="green") {
+  digitalWrite(redpin, LOW);
+  digitalWrite(greenpin, HIGH);
+  digitalWrite(bluepin, LOW);
+}
+if (mycolor=="blue") {
+  digitalWrite(redpin, LOW);
+  digitalWrite(greenpin, LOW);
+  digitalWrite(bluepin, HIGH);
+}
+if (mycolor=="off") {
+  digitalWrite(redpin, LOW);
+  digitalWrite(greenpin, LOW);
+  digitalWrite(bluepin, LOW);
+}
+if (mycolor=="aqua") {
+  digitalWrite(redpin, LOW);
+analogWrite(greenpin, 255);
+  analogWrite(bluepin, 20);
+}
+}
+
+lesson 22
+int mynum;
+int buzzpin = 8;
+String msg = "please input your number";
+int dt =2000;
+
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(buzzpin,OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+Serial.println(msg);
+while(Serial.available()==0) {
+  
+}
+mynum = Serial.parseInt();
+if (mynum>10){
+  digitalWrite(buzzpin,HIGH);
+  delay(dt);
+  digitalWrite(buzzpin,LOW);
+}
+}
